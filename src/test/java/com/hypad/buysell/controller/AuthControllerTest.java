@@ -30,6 +30,7 @@ class AuthControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    //Other methods tested in postman
     @Test
     public void testAuthPage() throws Exception {
         User user = new User();
