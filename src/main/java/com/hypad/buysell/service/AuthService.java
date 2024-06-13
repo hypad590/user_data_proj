@@ -4,6 +4,8 @@ import com.hypad.buysell.dao.AuthDAO;
 import com.hypad.buysell.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthService {
     private final AuthDAO authDAO;
@@ -20,5 +22,14 @@ public class AuthService {
     }
     public void deleteUser(Long id){
         authDAO.deleteUser(id);
+    }
+    public List<User> findUserById(Long id){
+        return authDAO.findUserById(id);
+    }
+    public List<User> findAllUsers() {
+        return authDAO.findAllUsers();
+    }
+    public List<User> findUserByName(String name) {
+        return authDAO.findUserByName(name);
     }
 }
