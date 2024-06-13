@@ -18,4 +18,7 @@ public class AuthService {
     public boolean ifUserExists(String name, String password) {
         return authDAO.compareData(name, password);
     }
+    public void deleteUser(Long id){
+        authDAO.deleteUser(id);
+    }
 }

@@ -39,4 +39,11 @@ public class AuthDAO {
         }
     }
 
+    public void deleteUser(Long id){
+        String sql = "DELETE FROM userData WHERE id = :id ";
+        SqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("id",id);
+        jdbcTemplate.update(sql,parameterSource);
+    }
+
 }
