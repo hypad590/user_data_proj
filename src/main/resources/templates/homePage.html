@@ -5,9 +5,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Домашняя страница</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/container.css}">
 </head>
 <body>
-	
+	<form th:action="@{/saveUser}" method="post">
+		<button type="submit">Добавить</button>
+	</form>
+	<form th:action="@{/deleteUser}" method="post">
+		<input type="text" id="id" placeholder="Введите айди" required>
+		<button type="submit">Удалить</button>
+	</form>
+	<form method="post" onsubmit="redirectToUpdate(event)">
+		<input type="text" id="updateId" placeholder="Введите ID" required>
+		<input type="text" id="name" placeholder="Введите имя" required>
+		<input type="text" id="password" placeholder="Введите пароль" required>
+		<button type="submit">Изменить</button>
+	</form>
+	<form th:action="@{/findAllUsers}" method="post">
+		<button type="submit">Найти</button>
+	</form>
+
+<script src="/js/updateForm.js"></script>
 </body>
 </html>
