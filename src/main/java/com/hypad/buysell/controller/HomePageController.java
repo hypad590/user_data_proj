@@ -55,5 +55,10 @@ public class HomePageController {
         return authService.findAllUsers();
     }
 
+    @PostMapping("/saveUser")
+    public String saveUser(){
+        return "redirect:/auth/api/v1/authorization";
+    }
+
     //todo html templates for endpoints
 }
