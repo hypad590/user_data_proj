@@ -39,8 +39,7 @@ public class LoginController {
             authService.saveUser(user);
 
             model.addAttribute("msg","User created Successfully");
-
-            //in addition, we can add attr user to show user on homePage here
+            model.addAttribute("user",user);
 
             return "redirect:/";
         }

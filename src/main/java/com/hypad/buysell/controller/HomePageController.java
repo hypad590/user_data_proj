@@ -3,6 +3,7 @@ package com.hypad.buysell.controller;
 import com.hypad.buysell.model.User;
 import com.hypad.buysell.service.AuthService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +18,22 @@ public class HomePageController {
     }
 
     @GetMapping
-    public String homePage() {
+    public String homePage(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("user",user);
         return "homePage";
     }
 
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") Long id) {
         authService.deleteUser(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable Long id,
+                             @RequestParam("name") String newName,
+                             @RequestParam("password") String newPass) {
+        authService.updateUser(id,newName,newPass);
         return "redirect:/";
     }
 
@@ -44,4 +54,6 @@ public class HomePageController {
     public List<User> findAllUsers() {
         return authService.findAllUsers();
     }
+
+    //todo html templates for endpoints
 }

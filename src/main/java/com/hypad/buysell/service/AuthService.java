@@ -23,6 +23,9 @@ public class AuthService {
     public void deleteUser(Long id){
         authDAO.deleteUser(id);
     }
+    public void updateUser(Long id, String newName, String newPass){authDAO.updateUser(
+            id,newName,newPass
+    );}
     public List<User> findUserById(Long id){
         return authDAO.findUserById(id);
     }
