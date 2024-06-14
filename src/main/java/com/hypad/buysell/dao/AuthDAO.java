@@ -70,4 +70,13 @@ public class AuthDAO {
                 .addValue("name",name);
         return jdbcTemplate.query(sql,sqlParameterSource,new BeanPropertyRowMapper<>(User.class));
     }
+
+    public void updateUser(Long id, String newName, String newPass){
+        String sql = "UPDATE userData SET name = :name, password = :password WHERE id = :id";
+        SqlParameterSource parameterSource  = new MapSqlParameterSource()
+                .addValue("id",id)
+                .addValue("name",newName)
+                .addValue("password",newPass);
+        jdbcTemplate.update(sql,parameterSource);
+    }
 }
