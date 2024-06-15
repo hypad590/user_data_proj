@@ -17,7 +17,7 @@ public class HomePageController {
         this.authService = authService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String homePage(@ModelAttribute("user") User user, Model model) {
         model.addAttribute("user",user);
         return "homePage";
@@ -59,6 +59,4 @@ public class HomePageController {
     public String saveUser(){
         return "redirect:/auth/api/v1/authorization";
     }
-
-    //todo html templates for endpoints
 }
