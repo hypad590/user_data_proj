@@ -19,11 +19,6 @@ public class LoginController {
         this.authService = authService;
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-
     @PostMapping("/register")
     public String register(@ModelAttribute("name") String name,
                            @ModelAttribute("password") String password, Model model) {
@@ -41,7 +36,7 @@ public class LoginController {
             model.addAttribute("msg","User created Successfully");
             model.addAttribute("user",user);
 
-            return "redirect:/";
+            return "redirect:/userSuccessfullyPage";
         }
     }
 }
