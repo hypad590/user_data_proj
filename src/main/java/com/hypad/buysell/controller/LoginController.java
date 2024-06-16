@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth/api/v1")
@@ -21,22 +22,20 @@ public class LoginController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute("name") String name,
-                           @ModelAttribute("password") String password, Model model) {
+                           @ModelAttribute("password") String password,
+                           @ModelAttribute("gmail") String gmail,
+                           RedirectAttributes model)
+    {
+                User user = new User();
+                user.setName(name);
+                user.setPassword(password);
+                user.setGmail(gmail);
 
-        if(authService.ifUserExists(name,password)){
-            return "redirect:/";
-        }
-        else{
-            User user = new User();
-            user.setName(name);
-            user.setPassword(password);
+                authService.saveUser(user);
 
-            authService.saveUser(user);
+                model.addAttribute("msg","User created Successfully");
+                model.addAttribute("user",user);
 
-            model.addAttribute("msg","User created Successfully");
-            model.addAttribute("user",user);
-
-            return "redirect:/userSuccessfullyPage";
-        }
+                return "redirect:/userSuccessfullyPage";
     }
 }

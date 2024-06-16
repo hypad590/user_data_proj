@@ -22,8 +22,8 @@ public class ServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean ifUserExists(String name, String password) {
-        return authDAO.compareData(name,password);
+    public boolean ifUserExists(String name, String password, String gmail) {
+        return authDAO.compareData(name,password,gmail);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class ServiceImpl implements AuthService {
     }
 
     @Override
-    public void updateUser(Long id, String newName, String newPass) {
-        authDAO.updateUser(id, newName, newPass);
+    public void updateUser(Long id, String newName, String newPass, String newGmail) {
+        authDAO.updateUser(id, newName, newPass, newGmail);
     }
 
     @Override
