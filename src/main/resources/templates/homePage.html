@@ -11,13 +11,13 @@
 		<button type="submit">Добавить</button>
 	</form>
 	<form th:action="@{/deleteUser}" method="post">
-		<input type="text" id="id" placeholder="Введите айди" required>
+		<input type="text" id="id" name="id" placeholder="Введите айди" required>
 		<button type="submit">Удалить</button>
 	</form>
 	<form method="post" onsubmit="redirectToUpdate(event)">
-		<input type="text" id="updateId" placeholder="Введите ID" required>
-		<input type="text" id="name" placeholder="Введите имя" required>
-		<input type="text" id="password" placeholder="Введите пароль" required>
+		<input type="text" id="updateId" name="updateId" placeholder="Введите ID" required>
+		<input type="text" id="name" name="name" placeholder="Введите имя" required>
+		<input type="text" id="password" name="password" placeholder="Введите пароль" required>
 		<button type="submit">Изменить</button>
 	</form>
 	<form th:action="@{/findAllUsers}" method="post">
