@@ -35,7 +35,18 @@ public class AuthController {
             attributes.addFlashAttribute("name", name);
             attributes.addFlashAttribute("password", password);
             attributes.addFlashAttribute("gmail",gmail);
-            return "redirect:/register";
+
+            User user = new User();
+            user.setName(name);
+            user.setPassword(password);
+            user.setGmail(gmail);
+
+            authService.saveUser(user);
+
+            attributes.addAttribute("msg","User created Successfully");
+            attributes.addAttribute("user",user);
+
+            return "redirect:/userSuccessfullyPage";
         }
     }
 
