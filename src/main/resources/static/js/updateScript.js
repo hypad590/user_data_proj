@@ -9,7 +9,7 @@ document.getElementById('updateForm').addEventListener('submit', function(event)
 	fetch('/updateUser/' + id, {
 		 method: 'POST',
 		 headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/x-www-form-urlencoded'
 		},
 		body: `name=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}&gmail=${encodeURIComponent(gmail)}`
 	})

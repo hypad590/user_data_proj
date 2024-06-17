@@ -25,28 +25,22 @@ public class AuthController {
     }
 
     @PostMapping("/authorization")
-    public String authPage(@RequestParam String name, @RequestParam String password,
-                           @RequestParam String gmail,
-                           RedirectAttributes attributes) {
-        if(authService.ifUserExists(name,password,gmail)){
-            return "redirect:/";
+    public ResponseEntity<String> authPage(@RequestBody User user,
+                           Model attributes){
+        if(authService.ifUserExists(user.getName(),user.getPassword(),user.getGmail())){
+            return ResponseEntity.ok("/");
         }
         else{
-            attributes.addFlashAttribute("name", name);
-            attributes.addFlashAttribute("password", password);
-            attributes.addFlashAttribute("gmail",gmail);
-
-            User user = new User();
-            user.setName(name);
-            user.setPassword(password);
-            user.setGmail(gmail);
+            attributes.addAttribute("name",user.getName());
+            attributes.addAttribute("password", user.getPassword());
+            attributes.addAttribute("gmail",user.getGmail());
 
             authService.saveUser(user);
 
             attributes.addAttribute("msg","User created Successfully");
             attributes.addAttribute("user",user);
 
-            return "redirect:/userSuccessfullyPage";
+            return ResponseEntity.ok("/userSuccessfullyPage");
         }
     }
 
