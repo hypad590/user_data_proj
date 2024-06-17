@@ -27,14 +27,14 @@ public class AuthController {
     @PostMapping("/authorization")
     public String authPage(@RequestParam String name, @RequestParam String password,
                            @RequestParam String gmail,
-                           RedirectAttributes attributes) {
+                           Model attributes) {
         if(authService.ifUserExists(name,password,gmail)){
             return "redirect:/";
         }
         else{
-            attributes.addFlashAttribute("name", name);
-            attributes.addFlashAttribute("password", password);
-            attributes.addFlashAttribute("gmail",gmail);
+            attributes.addAttribute("name", name);
+            attributes.addAttribute("password", password);
+            attributes.addAttribute("gmail",gmail);
 
             User user = new User();
             user.setName(name);
