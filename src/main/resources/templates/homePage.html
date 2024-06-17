@@ -11,10 +11,10 @@
 		<button type="submit">Добавить</button>
 	</form>
 	<form th:action="@{/deleteUser}" method="post">
-		<input type="text" id="deleteId" name="id" placeholder="Введите айди" required>
+		<input type="text" name="id" placeholder="Введите айди" required>
 		<button type="submit">Удалить</button>
 	</form>
-	<form method="post" onsubmit="redirectToUpdate(event)">
+	<form method="post" id="updateForm">
 		<input type="text" id="id" name="id" placeholder="Введите ID" required>
 		<input type="text" id="name" name="name" placeholder="Введите имя" required>
 		<input type="text" id="password" name="password" placeholder="Введите пароль" required>
@@ -25,6 +25,6 @@
 		<button type="submit">Найти</button>
 	</form>
 
-<script src="/js/updateForm.js"></script>
+<script src="/js/updateScript.js"></script>
 </body>
 </html>
