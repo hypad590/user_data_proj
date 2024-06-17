@@ -32,8 +32,9 @@ public class HomePageController {
     @PostMapping("/updateUser/{id}")
     public String updateUser(@PathVariable Long id,
                              @RequestParam("name") String newName,
-                             @RequestParam("password") String newPass) {
-        authService.updateUser(id,newName,newPass);
+                             @RequestParam("password") String newPass,
+                             @RequestParam("gmail") String gmail) {
+        authService.updateUser(id,newName,newPass,gmail);
         return "redirect:/";
     }
 

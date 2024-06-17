@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 public interface AuthService {
     void saveUser(User user);
-    boolean ifUserExists(String name, String password);
+    boolean ifUserExists(String name, String password, String gmail);
     void deleteUser(Long id);
-    void updateUser(Long id, String newName, String newPass);
+    void updateUser(Long id, String newName, String newPass, String newGmail);
     List<User> findUserById(Long id);
     List<User> findAllUsers();
     List<User> findUserByName(String name);

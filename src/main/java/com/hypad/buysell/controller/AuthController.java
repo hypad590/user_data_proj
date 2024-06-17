@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth/api/v1")
@@ -24,13 +25,16 @@ public class AuthController {
     }
 
     @PostMapping("/authorization")
-    public String authPage(@RequestParam String name, @RequestParam String password, Model model) {
-        if(authService.ifUserExists(name,password)){
+    public String authPage(@RequestParam String name, @RequestParam String password,
+                           @RequestParam String gmail,
+                           RedirectAttributes attributes) {
+        if(authService.ifUserExists(name,password,gmail)){
             return "redirect:/";
         }
         else{
-            model.addAttribute("name", name);
-            model.addAttribute("password", password);
+            attributes.addFlashAttribute("name", name);
+            attributes.addFlashAttribute("password", password);
+            attributes.addFlashAttribute("gmail",gmail);
             return "redirect:/register";
         }
     }
