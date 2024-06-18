@@ -13,5 +13,5 @@ document.getElementById('authForm').addEventListener('submit', function(event) {
 		},
 		body: `name=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}&gmail=${encodeURIComponent(gmail)}`
 	})
-	window.location.href = '/';
+	window.location.href = '/auth/api/v1/userSuccessfullyPage';
 });
