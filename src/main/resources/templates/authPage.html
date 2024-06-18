@@ -7,10 +7,13 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
-	<form method="post" th:action="@{/auth/api/v1/authorization}">
+	<form method="post" id="authForm">
 		<input type="text" id="name" name="name" placeholder="Введите имя" required>
 		<input type="text" id="password" name="password" placeholder="Введите пароль" required>
+		<input type="text" id="gmail" name="gmail" placeholder="Введите почту" required>
 		<button type="submit">Войти</button>
 	</form>
+
+<script src="/js/authScript.js"></script>
 </body>
 </html>
