@@ -19,3 +19,11 @@ document.getElementById('authForm').addEventListener('submit', function(event) {
 	})
 	window.location.href = '/auth/api/v1/userSuccessfullyPage';
 });
+
+// fetch('/auth/api/v1/authorization', {
+// 	method: 'POST',
+// 	headers: {
+// 		'Content-Type': 'application/x-www-form-urlencoded'
+// 	},
+// 	body: `name=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}&gmail=${encodeURIComponent(gmail)}`
+// })
