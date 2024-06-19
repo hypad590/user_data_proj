@@ -2,16 +2,20 @@ package com.hypad.buysell.controller;
 
 import com.hypad.buysell.model.User;
 import com.hypad.buysell.service.AuthService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth/api/v1")
 public class AuthController {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     private final AuthService authService;
 
@@ -25,10 +29,12 @@ public class AuthController {
     }
 
     @PostMapping("/authorization")
-    public ResponseEntity<String> authPage(@RequestBody User user,
+    public ModelAndView authPage(@RequestBody User user,
                            Model attributes){
+        logger.info("Received request to authorize user: {}", user);
         if(authService.ifUserExists(user.getName(),user.getPassword(),user.getGmail())){
-            return ResponseEntity.ok("/");
+            logger.info("User exists, redirecting to home page.");
+            return new ModelAndView("redirect:/");
         }
         else{
             attributes.addAttribute("name",user.getName());
@@ -37,17 +43,19 @@ public class AuthController {
 
             authService.saveUser(user);
 
-            attributes.addAttribute("msg","User created Successfully");
-            attributes.addAttribute("user",user);
+            ModelAndView mav = new ModelAndView("userSuccessfullyPage");
 
-            return ResponseEntity.ok("/userSuccessfullyPage");
+            mav.addObject("welcomeMsg","Welcome aboard! Your account has been created.");
+            mav.addObject("user",user);
+
+            logger.info("User does not exist, creating new user and redirecting to userSuccessfullyPage.");
+            return mav;
         }
     }
 
     @GetMapping("/userSuccessfullyPage")
-    @ResponseBody
-    public String userCreatedSuccessfully(@ModelAttribute("msg") String msg) {
-        return msg;
+    public String userCreatedSuccessfully() {
+        return "userSuccessfullyPage";
     }
 
 }

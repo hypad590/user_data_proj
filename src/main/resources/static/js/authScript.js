@@ -9,9 +9,13 @@ document.getElementById('authForm').addEventListener('submit', function(event) {
 	fetch('/auth/api/v1/authorization', {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded'
+			'Content-Type': 'application/json'
 		},
-		body: `name=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}&gmail=${encodeURIComponent(gmail)}`
+		body: JSON.stringify({
+			name: name,
+			password: password,
+			gmail: gmail
+		})
 	})
 	window.location.href = '/auth/api/v1/userSuccessfullyPage';
 });
